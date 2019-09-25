@@ -1,5 +1,6 @@
 const   score = document.querySelector('.score');
-const   start = document.querySelector('.start');
+const   start = document.querySelectorAll('.start');
+const   startWindow = document.querySelector('.game');
 const   gameArea = document.querySelector('.gameArea'),
         car = document.createElement('div'),
         modalScore = document.querySelector('.modal'),
@@ -9,12 +10,17 @@ const   gameArea = document.querySelector('.gameArea'),
         modalScoreOut = document.querySelector('.modal-score'),
         modalResult = document.querySelector('.modal--result'),
         // music = document.createElement('embed'); 
-        music = document.createElement('audio'); 
+        music = document.createElement('audio');
         car.classList.add('car');
-
     // console.log(Math.floor(Math.random() * (5 - 1 + 1)) + 1);
-    
-    start.addEventListener('click', startGame);
+
+    start.forEach(function(item){
+        // console.log(item);
+        item.addEventListener('click', startGame);
+        item.addEventListener('click', getLevel); // устанавливаем нужный уровень
+        // let level = item.getAttribute('data-level');
+    });
+
     document.addEventListener('keydown', startRun);
     document.addEventListener('keyup', stopRun);
     // modalButton.addEventListener('click', function(){
@@ -34,13 +40,29 @@ const   gameArea = document.querySelector('.gameArea'),
         speed: 3,
         traffic: 3
     };
+
+// получаем data-level для установки уровня сложности
+    function getLevel() { 
+        let level = this.getAttribute('data-level');
+        if (+level === 3) {
+            setting.speed = +level;
+            setting.traffic = 3;
+        } if (+level === 8) {
+            setting.speed = +level;
+            setting.traffic = 2;
+        } if (+level === 12) {
+            setting.speed = +level;
+            setting.traffic = 1;
+        }
+    }
+
     // Получаем кол-во элементов
     function getQuantityElements(heightElement) {
         return Math.floor(gameArea.offsetHeight / heightElement + 1);
     }
     
     function startGame(){
-        start.classList.add('hide');
+        startWindow.classList.add('hide');
         gameArea.innerHTML = '';
         // console.log(gameArea.offsetHeight);
         // console.log(gameArea.offsetHeight);
@@ -166,7 +188,7 @@ function moveEnemy(){
             carRect.bottom >= enemyRect.top) {
                 // console.log('ДТП');
                 setting.start = false;
-                start.classList.remove('hide');
+                startWindow.classList.remove('hide');
                 
             
         }
@@ -181,15 +203,21 @@ function moveEnemy(){
     });
 
 }
+
+// модальное окно с счетом
 function scoreModal(name) {
     modalScoreOut.textContent = setting.score;
     modalResult.innerHTML = '';
     modalResult.textContent = name;
     modalScore.style.display = 'block';
 }
+
+// закрыть модальное окно
 function scoreModalClose(){
     modalScore.style.display = 'none';
 }
+
+// сравниваем набранные очки и передвём их функции модального окна
 function scoreResult(){
     if (!setting.start) {  
         // записываем счет в localStorage
@@ -220,7 +248,7 @@ function scoreResult(){
     }
     
 }
-
+// Объект для записи значений в localStorage
 const storage = {
     getItem(name) {
         const ls = localStorage.getItem(name);
