@@ -16,8 +16,8 @@ const   gameArea = document.querySelector('.gameArea'),
 
     start.forEach(function(item){
         // console.log(item);
-        item.addEventListener('click', startGame);
         item.addEventListener('click', getLevel); // устанавливаем нужный уровень
+        item.addEventListener('click', startGame);
         // let level = item.getAttribute('data-level');
     });
 
@@ -52,7 +52,7 @@ const   gameArea = document.querySelector('.gameArea'),
             setting.traffic = 2;
         } if (+level === 12) {
             setting.speed = +level;
-            setting.traffic = 1;
+            setting.traffic = 3;
         }
     }
 
@@ -66,6 +66,8 @@ const   gameArea = document.querySelector('.gameArea'),
         gameArea.innerHTML = '';
         // console.log(gameArea.offsetHeight);
         // console.log(gameArea.offsetHeight);
+
+        // создаём линии
         for (let i = 0; i < getQuantityElements(100); i++) {
             const line = document.createElement('div');
             line. classList.add('line');
@@ -73,7 +75,8 @@ const   gameArea = document.querySelector('.gameArea'),
             line.y = i * 100;
             gameArea.appendChild(line);
         }
-        
+
+        // добавляем музыку
         gameArea.appendChild(car);
         music.setAttribute('autoplay', true);
         music.setAttribute('loop', true);
@@ -82,10 +85,12 @@ const   gameArea = document.querySelector('.gameArea'),
         // music.setAttribute('type', 'audio/mp3');
         music.classList.add('music');
         controls.appendChild(music);
+
+
         car.style.left = (gameArea.offsetWidth / 2) - (car.offsetWidth / 2) + 'px';
         car.style.top = 'auto';
         
-        
+        // создаём машинки
         for (let i = 0; i < getQuantityElements(100 * setting.traffic); i++) {
             const enemy = document.createElement('div');
             enemy.classList.add('enemy');
@@ -120,6 +125,7 @@ const   gameArea = document.querySelector('.gameArea'),
                 moveEnemy();
                 scoreResult();
                 // scoreModalClose();
+                
                 
                 if (keys.ArrowLeft && setting.x  > 0) {
                     setting.x -= setting.speed;
