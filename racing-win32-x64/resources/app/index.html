@@ -1,0 +1,45 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NeedForJS</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <div class="controls">
+        <div class="controls-wrap">
+            <div class="controls--label">Счет:</div>
+            <div class="score"></div>
+        </div>
+        <div class="controls-wrap">
+            <div class="controls--label record">Рекорд:</div>
+            <div class="score-record"></div>
+        </div>
+        <button class="controls-button" type="button">Сбросить&nbsp;рекорд</button>
+    </div>
+    <div class="modal">
+        <div class="modal-container">
+            <div class="modal-wrap">
+                <div class="modal--title">Ваш счет:</div>
+                <div class="modal-score"></div>
+            </div>
+            <div class="modal--result"></div>
+            <!-- <button class="modal--button" type="button">Ok</button> -->
+        </div>
+    </div>
+    <div class="game">
+        <div class="game-wrap">
+            <h2>Начни игру!</h2>
+            <div data-level="3" class="start">Легкий уровень</div>
+            <div data-level="8" class="start start-middle">Средний уровень</div>
+            <div data-level="12" class="start start-hard">Тяжелый уровень</div>
+        </div>
+    </div>
+    <div class="gameArea"></div>
+
+
+    <script src="./js/script.js"></script>
+</body>
+</html>
