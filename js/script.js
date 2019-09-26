@@ -27,6 +27,7 @@ const   gameArea = document.querySelector('.gameArea'),
     document.addEventListener('keydown', startRun);
     document.addEventListener('keyup', stopRun);
     document.addEventListener('keydown', pauseGame);
+    
     // modalButton.addEventListener('click', function(){
     //     modalScore.style.display = 'none';
     // });
