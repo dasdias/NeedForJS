@@ -84,21 +84,39 @@ img {
     top: 30px;
     left: 30px;
     padding: 10px;
-    width: 100px;
+    min-width: 110px;
     border-radius: 3px;
     box-shadow: 2px 3px 5px rgba(0, 0, 0, .5);
 }
 .controls-wrap {
     display: flex;
     font-size: 12px;
+    padding: 3px;
 }
 .controls--label {
     text-transform: uppercase;
     font-weight: 700;
+    margin-right: 10px;
 }
-.score {
+.controls-button {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 3px 6px;
+    border-radius: 3px;
+    border-style: none;
+    outline: none;
+    box-shadow: inset -1px -1px 2px rgba(0,0,0, 0.5);
+    margin-top: 10px;
+
+    /* border: 1px solid #222; */
+}
+.controls-button:active {
+    box-shadow: inset 1px 1px 2px rgba(0,0,0, 0.5);
+}
+/* .score {
     margin-left: 10px;
-}
+} */
 .modal {
     display: none;
 }
@@ -138,11 +156,10 @@ img {
     padding: 3px 10px;
     border-radius: 5px;
     outline: none;
-
 }
 .music {
     position: absolute;
     left: 0;
-    top: 70px;
+    top: 100px;
     outline: none;
 }
